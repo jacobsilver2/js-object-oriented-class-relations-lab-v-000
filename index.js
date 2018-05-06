@@ -11,12 +11,14 @@ class Driver {
   }
 
   trips(){
-    
-  }
+    return store.trips.filter(trip => {
+      return trip.driverId === this.id 
+    })}
 
   passengers(){
-    
-  }
+    return store.trips.map(trip => {
+      return trip.driverId === this.id   
+    })}
 }
 
 class Passenger {
@@ -43,19 +45,17 @@ class Trip {
     store.trips.push(this);
   }
 
-  setPassenger(passenger){
-    this.passengerId = passenger.id;
-  }
+
 
   driver() {
-
-  }
+    return store.drivers.find(driver => {
+      return driver.id === this.driverId;
+    })}
 
   passenger() {
-    return store.passengers.find(function(p) {
-      return p.id === this.passengerId;
-    });
-  }
+    return store.passengers.find(passenger => {
+      return passenger.id === this.passengerId;
+    })};
 
 }
 
